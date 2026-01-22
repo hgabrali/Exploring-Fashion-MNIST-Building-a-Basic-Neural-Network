@@ -398,7 +398,7 @@ The Confusion Matrix is a critical diagnostic tool that provides a granular brea
 
 ## ❓ Why Use a Confusion Matrix? 
 
-* **Beyond Global Accuracy:** While our overall accuracy is **82.64%**, the confusion matrix provides a granular view of performance beyond a single scalar metric.
+* **Beyond Global Accuracy:** While our overall accuracy is **88.63%**, the confusion matrix provides a granular view of performance beyond a single scalar metric.
 * **Error Localization:** it allows us to pinpoint exactly which classes are being confused with one another, moving from general error rates to specific category pairs.
 * **Model Diagnostics:** It helps identify if failures are due to **structural similarities** in the dataset or inherent weaknesses in the current **Artificial Neural Network (ANN)** architecture.
 * **Class-Specific Performance:** It enables the evaluation of **Precision (tahmin hassasiyeti)** and **Recall (duyarlılık)** for each category individually.
