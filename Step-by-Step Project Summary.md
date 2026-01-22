@@ -375,6 +375,11 @@ $$Total Batches = \frac{Total Samples}{Batch Size} = \frac{60,000}{32} = 1,875$$
 * **Computational Speed:** Modern hardware (GPUs) is optimized for parallel processing. A batch size of 32 allows the hardware to utilize its cores effectively without the bottleneck of processing images one by one.
 
 ---
+<img width="826" height="298" alt="image" src="https://github.com/user-attachments/assets/27ec8ec9-b6b1-4689-9440-f3f8b79099a1" />
+
+<img width="1076" height="424" alt="image" src="https://github.com/user-attachments/assets/1ccc2901-d1c1-4a68-9160-c4cb73d25bb4" />
+
+
 
 
 
