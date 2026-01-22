@@ -39,4 +39,5 @@ Without activation functions, a neural network—regardless of how many layers i
 | **Tanh** | $\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$ | Maps input to $[-1, 1]$, centering data around zero for easier optimization in certain architectures. |
 
 ---
+<img width="709" height="251" alt="image" src="https://github.com/user-attachments/assets/74d55678-c1fa-4b81-b4f1-5d89c967c853" />
 
