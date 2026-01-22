@@ -140,10 +140,33 @@ A critical takeaway from the histogram diagnostics is the immediate need for **N
 
 We perform a mathematical calculation to determine the "average image" for each of the 10 categories.
 
+
+<img width="1212" height="429" alt="image" src="https://github.com/user-attachments/assets/29c090e0-c026-4384-84c4-19a74e605bf1" />
+
+
 * **The Goal:** To visualize the "centroid" or the most typical, aggregate representation of a specific category, such as a "Dress" or "Sneaker."
 * **The Problem it Solves:** If the average images of two different classes (e.g., a "Shirt" and a "Coat") appear nearly identical, it signals high **Inter-class Similarity**. This diagnostic suggests that the model may struggle with differentiation, indicating a need for more sophisticated architectures like **Convolutional Neural Networks (CNNs)** rather than simple **Artificial Neural Networks (ANNs)**.
 
-![Visual Placeholder: A 2x5 grid of blurry 'mean' images representing the average shape of each category]
+
+This visualization provides several technical insights that directly influence the architectural decisions of the project by revealing the underlying mathematical structure of the dataset categories.
+
+---
+
+### Technical Insights and Findings
+
+#### Aggregate Representation 
+Each frame in this visualization represents the **"mathematical average"** of thousands of individual images within that specific category. By calculating the mean value for every pixel across all samples of a class, we produce a "centroid" image that highlights the most persistent structural features of that apparel type.
+
+
+
+#### Inter-class Similarity
+The visualization allows us to detect **High Inter-class Similarity**. For instance, if the average images of categories such as **"Shirt," "T-shirt," and "Coat"** appear nearly identical in their aggregate form, it indicates that the global spatial distribution of pixels is remarkably similar across these classes.
+
+#### 🏗️ Architectural Justification 
+The clarity—or lack thereof—in these mean images serves as a primary justification for model selection:
+* **ANN Limitations:** If the distinctions between average images are highly ambiguous or blurry, a basic **Artificial Neural Network (ANN)** may struggle to differentiate between pixels effectively, as it treats each pixel as an independent feature.
+* **CNN Necessity:** In scenarios where high similarity exists, the implementation of **Convolutional Neural Networks (CNNs)** becomes a technical necessity. CNNs are specifically designed to capture **spatial features (mekansal özellikler)** and local patterns (like collar shapes or sleeve lengths) that a simple flattened input would overlook.
+
 
 ---
 
