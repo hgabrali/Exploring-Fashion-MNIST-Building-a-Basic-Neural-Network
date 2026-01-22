@@ -29,7 +29,7 @@ Without activation functions, a neural network—regardless of how many layers i
 
 ---
 
-## 📑 Common Activation Functions in GitHub Documentation
+## 📑 Common Activation Functions
 
 | Function Name | Mathematical Formula | Technical Detail & Importance |
 | :--- | :--- | :--- |
