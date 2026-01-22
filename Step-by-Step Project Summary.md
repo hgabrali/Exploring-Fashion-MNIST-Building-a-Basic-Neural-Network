@@ -24,7 +24,9 @@ The dataset consists of **70,000 images** (60,000 for training and 10,000 for te
 
 
 
-# 1.  **Data Loading :** We fetch the ready-to-use dataset using the `tfds.load` function from the **TensorFlow Datasets** library. This allows us to easily access the raw image data and labels.
+# 1.  **Data Loading :**
+
+We fetch the ready-to-use dataset using the `tfds.load` function from the **TensorFlow Datasets** library. This allows us to easily access the raw image data and labels.
 
 ### Data Initialization and Dataset Partitioning
 
