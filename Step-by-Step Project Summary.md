@@ -76,13 +76,13 @@ We create plots and figures to understand the data's content and structure. Seei
 Before proceeding to preprocessing, it is essential to perform a visual inspection of the raw data. 
 
 
-# 🔍 Advanced Data Breakdowns and Diagnostic Visualizations
+#### 🔍 Advanced Data Breakdowns and Diagnostic Visualizations
 
 To ensure the development of a robust model, it is imperative to look beyond individual samples. Before proceeding to the **Preprocessing (Normalization)** phase, the following diagnostic "breakdowns" (kırılımlar) are rigorously analyzed to identify potential issues or underlying biases within the dataset.
 
 ---
 
-## ⚖️ 1. Class Distribution Analysis (Label Balance)
+### ⚖️ 1. Class Distribution Analysis (Label Balance)
 
 In this phase, we analyze the frequency and representation of each distinct class within the training set.
 
@@ -94,7 +94,7 @@ In this phase, we analyze the frequency and representation of each distinct clas
 
 ---
 
-## 📈 2. Pixel Intensity Distribution (Histogram Analysis)
+### 📈 2. Pixel Intensity Distribution (Histogram Analysis)
 
 By plotting a comprehensive histogram of raw pixel values across multiple images, we examine the numerical range of the data.
 
@@ -108,14 +108,14 @@ This section provides a detailed analysis of the numerical distribution of pixel
 
 ---
 
-### Pixel Intensity and Dynamic Range
+#### Pixel Intensity and Dynamic Range
 
 * **Pixel Intensity Representation:** Each individual pixel within the dataset images is represented by an integer value ranging from $0$ (representing pure black) to $255$ (representing pure white).
 * **Dynamic Range Verification:** Our analysis confirms that the data occupies the comprehensive dynamic range of $[0, 255]$, ensuring that all levels of luminosity are represented across the dataset.
 
 ---
 
-### Bimodal Distribution Characteristics
+#### Bimodal Distribution Characteristics
 
 The histogram reveals a distinct bimodal distribution, which is characteristic of the Fashion MNIST dataset structure:
 
@@ -124,7 +124,7 @@ The histogram reveals a distinct bimodal distribution, which is characteristic o
 
 ---
 
-### Requirement for Feature Scaling and Normalization
+#### Requirement for Feature Scaling and Normalization
 
 A critical takeaway from the histogram diagnostics is the immediate need for **Normalization**:
 
@@ -136,7 +136,7 @@ A critical takeaway from the histogram diagnostics is the immediate need for **N
 ---
 
 
-## 🌫️ 3. Class-Averaged "Mean" Images
+### 🌫️ 3. Class-Averaged "Mean" Images
 
 We perform a mathematical calculation to determine the "average image" for each of the 10 categories.
 
@@ -152,17 +152,17 @@ This visualization provides several technical insights that directly influence t
 
 ---
 
-### Technical Insights and Findings
+#### Technical Insights and Findings
 
-#### Aggregate Representation 
+##### Aggregate Representation 
 Each frame in this visualization represents the **"mathematical average"** of thousands of individual images within that specific category. By calculating the mean value for every pixel across all samples of a class, we produce a "centroid" image that highlights the most persistent structural features of that apparel type.
 
 
 
-#### Inter-class Similarity
+##### Inter-class Similarity
 The visualization allows us to detect **High Inter-class Similarity**. For instance, if the average images of categories such as **"Shirt," "T-shirt," and "Coat"** appear nearly identical in their aggregate form, it indicates that the global spatial distribution of pixels is remarkably similar across these classes.
 
-#### 🏗️ Architectural Justification 
+##### 🏗️ Architectural Justification 
 The clarity—or lack thereof—in these mean images serves as a primary justification for model selection:
 * **ANN Limitations:** If the distinctions between average images are highly ambiguous or blurry, a basic **Artificial Neural Network (ANN)** may struggle to differentiate between pixels effectively, as it treats each pixel as an independent feature.
 * **CNN Necessity:** In scenarios where high similarity exists, the implementation of **Convolutional Neural Networks (CNNs)** becomes a technical necessity. CNNs are specifically designed to capture **spatial features (mekansal özellikler)** and local patterns (like collar shapes or sleeve lengths) that a simple flattened input would overlook.
@@ -170,7 +170,7 @@ The clarity—or lack thereof—in these mean images serves as a primary justifi
 
 ---
 
-## 📉 4. Variance and Noise Detection
+### 📉 4. Variance and Noise Detection
 
 By visualizing the standard deviation of pixels within a specific class, we identify spatial areas of high variability.
 
@@ -181,7 +181,7 @@ By visualizing the standard deviation of pixels within a specific class, we iden
 
 ---
 
-## 🎯 Conclusion of Exploratory Phase
+### 🎯 Conclusion of Exploratory Phase
 
 By performing these comprehensive breakdowns, the workflow transitions from simply **"seeing data"** to fundamentally **"understanding data."** This diagnostic rigor ensures that when we apply **Normalization** in the subsequent step, we do so with a profound understanding of the data's mathematical distribution, categorical balance, and structural complexity.
 
