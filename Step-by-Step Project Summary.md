@@ -380,6 +380,7 @@ $$Total Batches = \frac{Total Samples}{Batch Size} = \frac{60,000}{32} = 1,875$$
 <img width="1076" height="424" alt="image" src="https://github.com/user-attachments/assets/1ccc2901-d1c1-4a68-9160-c4cb73d25bb4" />
 
 
+<img width="1160" height="639" alt="image" src="https://github.com/user-attachments/assets/88f809d7-b0b7-4fec-92ad-98c23c83c0fb" />
 
 
 
