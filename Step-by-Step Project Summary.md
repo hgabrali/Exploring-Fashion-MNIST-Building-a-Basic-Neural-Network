@@ -227,6 +227,9 @@ We scale the pixel values (piksel değerleri) to a range between 0 and 1. This s
 
 <img width="585" height="198" alt="image" src="https://github.com/user-attachments/assets/1ba67d89-9982-456b-a09a-d05990a11614" />
 
+<img width="620" height="464" alt="image" src="https://github.com/user-attachments/assets/71600ade-2184-4669-93bd-519a50f97dd9" />
+
+
 
 We build the architecture by connecting various layers:
     * **Flattening :** Converting 2D images into 1D vectors.
