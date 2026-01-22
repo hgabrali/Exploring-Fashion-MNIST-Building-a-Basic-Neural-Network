@@ -16,7 +16,7 @@ The dataset consists of **70,000 images** (60,000 for training and 10,000 for te
 | 0 | T-shirt/top | 5 | Sandal |
 | 1 | Trouser | 6 | Shirt |
 | 2 | Pullover | 7 | Sneaker |
-| 3 | Dress | 8 | Bag |
+| 3 | Dress | 8 | Bag | 
 | 4 | Coat | 9 | Ankle boot |
 
 ---
