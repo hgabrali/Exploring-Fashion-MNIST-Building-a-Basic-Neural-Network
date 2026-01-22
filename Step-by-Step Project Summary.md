@@ -443,4 +443,4 @@ Bu grafik bize modelin **"Pantolon"** ve **"Bot"** gibi belirgin şekilleri çok
 
 ---
 
-`![Visual Placeholder: Annotated Confusion Matrix showing high-accuracy diagonals and specific confusion clusters for tops/shirts]`
+
