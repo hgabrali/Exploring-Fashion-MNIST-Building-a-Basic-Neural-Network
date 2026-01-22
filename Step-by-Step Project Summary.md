@@ -174,10 +174,12 @@ The clarity—or lack thereof—in these mean images serves as a primary justifi
 
 By visualizing the standard deviation of pixels within a specific class, we identify spatial areas of high variability.
 
+<img width="1187" height="421" alt="image" src="https://github.com/user-attachments/assets/00d9ddf1-e450-484b-afb8-f42a866cf386" />
+
+
 * **The Goal:** To pinpoint which sectors of the $28 \times 28$ grid exhibit the most change (e.g., the shifting sleeves of a shirt versus the relatively static sole of a shoe).
 * **The Problem it Solves:** This method assists in identifying outliers or noisy data points that deviate significantly from the standard structural characteristics of the class.
 
-![Visual Placeholder: Heatmap indicating pixel-wise variance where brighter areas show higher structural diversity]
 
 ---
 
