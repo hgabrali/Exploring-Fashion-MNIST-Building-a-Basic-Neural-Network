@@ -390,55 +390,6 @@ We measure the **Accuracy** (Başarı Oranı) of the model on the **Test Set** (
 
 <img width="627" height="536" alt="image" src="https://github.com/user-attachments/assets/02594048-5c81-4466-b3fa-5b1155f20990" />
 
-# 📉 Confusion Matrix Diagnostic Analysis
-
-The Confusion Matrix is a critical diagnostic tool that provides a granular breakdown of the model's predictive performance. While global metrics offer a high-level overview, the matrix allows for "error localization" to understand exactly where the model succeeds and fails.
-
----
-
-## ❓ Why Use a Confusion Matrix? 
-
-* **Beyond Global Accuracy:** While our overall accuracy is **88.63%**, the confusion matrix provides a granular view of performance beyond a single scalar metric.
-* **Error Localization:** it allows us to pinpoint exactly which classes are being confused with one another, moving from general error rates to specific category pairs.
-* **Model Diagnostics:** It helps identify if failures are due to **structural similarities** in the dataset or inherent weaknesses in the current **Artificial Neural Network (ANN)** architecture.
-* **Class-Specific Performance:** It enables the evaluation of **Precision (tahmin hassasiyeti)** and **Recall (duyarlılık)** for each category individually.
-
-
-
----
-
-## 🔍 What Does This Specific Matrix Tell Us? 
-
-The visualization of our results reveals specific patterns in the model's decision-making logic:
-
-### ✅ Diagonal Dominance (True Positives)
-The high numerical values along the diagonal (e.g., **983 for Trousers**, **981 for Ankle boots**) represent **True Positives**. This indicates that the model is highly effective at identifying these distinct silhouettes.
-
-### ⚠️ Structural Similarity Confusion
-The matrix reveals significant misclassification between items with similar silhouettes, confirming our **High Inter-class Similarity** hypothesis:
-* **Shirt vs. T-shirt/top:** 130 "Shirts" were incorrectly predicted as "T-shirt/top."
-* **Pullover vs. Coat:** 125 "Pullovers" were misclassified as "Coats."
-
-### 🧬 Inter-class Similarity Impact
-This confirms our previous **Exploratory Data Analysis (EDA)** finding regarding **Mean Images**: categories with high spatial overlap and similar pixel distributions directly lead to higher misclassification rates in a flattened model.
-
-### 🏆 High-Performing Classes
-Categories like **Trouser, Bag, and Ankle boot** show very high accuracy. Their visual "centroids" are geometrically distinct from other categories, making them easier for the model to isolate.
-
-### 📉 Weak Feature Extraction
-The persistent confusion between **"Shirt," "T-shirt," and "Coat"** suggests that a simple ANN struggles to extract the fine-grained details (like buttons, collars, or fabric textures) needed to separate these complex classes.
-
----
-
-## 📝 Summary
-
-Bu grafik bize modelin **"Pantolon"** ve **"Bot"** gibi belirgin şekilleri çok iyi tanıdığını, ancak **"Gömlek"** ve **"Tişört"** gibi birbirine benzeyen (**high inter-class similarity**) ürünlerde kafasının karıştığını söyler. Bu durum, modelimizi geliştirmek için bir sonraki adımda neden **Convolutional Neural Networks (CNN)** kullanmamız gerektiğinin en büyük kanıtıdır.
-
-
-
----
-
-
 
 # 📉 Post-Training Evaluation and Performance Assessment
 
@@ -450,23 +401,10 @@ After completing the training phase across **10 epochs**, we execute the `evalua
 
 The evaluation phase provides critical data points regarding the model's reliability and its ability to handle real-world variations in fashion imagery.
 
-### 🎯 Generalization Performance
-The primary objective of this phase is to evaluate the model's **Generalization** capability. We measure how effectively the neural network can classify images from the test set—data that was never presented to the model during the optimization process.
-
-### ✅ Accuracy Metric
-Based on the evaluation results, our current baseline model achieves an **Accuracy of 82.64%**.
-* **Statistical Translation:** This metric implies that approximately **8,264 out of 10,000** test images were identified correctly by the model.
-
-
-
----
-
-## 🔍 Diagnostic Analysis
-
-While the current accuracy serves as a functional baseline, a deeper diagnostic look reveals structural limitations within the architecture:
-
-* **Inter-class Misclassification:** A detailed analysis of the **Confusion Matrix** indicates that the model frequently misidentifies categories with high structural overlap.
-* **Specific Failures:** The model demonstrates significant difficulty in distinguishing between classes like **Pullovers** and **Coats**, where the global pixel distribution is nearly identical in a low-resolution ($28 \times 28$) flattened format.
+* **Generalization Performance (Genelleme Performansı):** The primary objective is to evaluate how effectively the neural network classifies images from the **Test Set (10,000 samples)**—data that was never presented to the model during optimization.
+* **Accuracy Metric (Doğruluk Metriği):** Based on the evaluation results, our current baseline model achieves a **Test Accuracy of $88.63\%$**.
+* **Statistical Translation:** This metric implies that approximately **8,863 out of 10,000** test images were identified correctly by the model.
+* **Model Complexity:** The architecture consists of **101,770 trainable parameters**, occupying roughly **397.54 KB** of memory.
 
 
 
@@ -474,14 +412,35 @@ While the current accuracy serves as a functional baseline, a deeper diagnostic 
 
 ## 🚀 Next Steps: Architectural Evolution
 
-To overcome these limitations and bridge the gap in accuracy, the project will transition from the current **Artificial Neural Network (ANN)** to a more sophisticated architecture:
+To bridge the remaining gap in accuracy, the project will transition from a basic ANN to a more sophisticated architecture:
 
 | Current Architecture | Target Architecture | Reason for Transition |
 | :--- | :--- | :--- |
-| **Basic ANN (Dense)** | **CNN (Convolutional)** | CNNs utilize spatial filters to detect edges, textures, and local patterns that basic dense layers overlook. |
-
-**Objective:** Implement **Convolutional Neural Networks (CNNs)** in the next phase to improve feature extraction and achieve higher classification precision.
+| **Basic ANN (Dense)** | **CNN (Convolutional)** | CNNs utilize spatial filters to detect edges and local patterns that basic dense layers overlook. |
 
 ---
 
-`![Visual Placeholder: Comparison chart showing current ANN accuracy vs. projected CNN performance targets]`
+## 📊 Confusion Matrix Diagnostic Analysis
+
+The **Confusion Matrix (Karmaşıklık Matrisi)** is a critical diagnostic tool that provides a granular breakdown of the model's predictive performance.
+
+### 🔍 What Does This Matrix Tell Us?
+The visualization reveals specific patterns in the model's decision-making logic:
+
+* **✅ Diagonal Dominance (True Positives):** The high numerical values along the diagonal represent **True Positives (Doğru Tahminler)**. The model is highly effective at identifying distinct silhouettes like **Trousers (982)**, **Ankle boots (971)**, and **Bags (962)**.
+* **⚠️ Structural Similarity Confusion:** The matrix reveals significant misclassification between items with similar silhouettes, confirming our **High Inter-class Similarity** hypothesis:
+    * **Shirt vs. T-shirt/top:** 88 "Shirts" were predicted as "T-shirt/top," while 135 "T-shirt/tops" were confused with "Shirts".
+    * **Pullover vs. Coat:** 103 "Pullovers" were misclassified as "Coats".
+* **📉 Weak Feature Extraction:** The persistent confusion between **"Shirt," "T-shirt," and "Coat"** suggests that a simple ANN struggles to extract fine-grained details (like buttons or collars) in a flattened $28 \times 28$ format.
+
+
+
+---
+
+## 📝 Summary (Özet)
+
+Bu grafik bize modelin **"Pantolon"** ve **"Bot"** gibi belirgin şekilleri çok iyi tanıdığını ($>97\%$), ancak **"Gömlek"** ve **"Tişört"** gibi yapısal olarak benzeyen ürünlerde hala zorlandığını söyler. Bu durum, mekansal özellikleri (**spatial features**) daha iyi yakalayan **CNN mimarisine** geçiş yapmamız gerektiğini kanıtlar.
+
+---
+
+`![Visual Placeholder: Annotated Confusion Matrix showing high-accuracy diagonals and specific confusion clusters for tops/shirts]`
