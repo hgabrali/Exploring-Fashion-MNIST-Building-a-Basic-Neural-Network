@@ -51,7 +51,7 @@ The output validates the automatic partitioning of the data as defined in the so
 | **Training Samples** | 60,000 | Used to optimize model weights and learn feature patterns. |
 | **Test Samples** | 10,000 | Reserved as a "hold-out" set to evaluate generalization on unseen data. |
 
-!
+
 
 ---
 
@@ -62,16 +62,112 @@ This stage serves as the structural foundation of the entire machine learning pi
 2.  **Pipeline Readiness:** Ensuring the data is correctly partitioned and accessible is a prerequisite before proceeding to **Normalization**, **Feature Engineering**, and **Model Architecture** definition.
 3.  **Experimental Integrity:** By separating the test set early, we ensure that the model evaluation remains objective and free from data leakage.
 
-!
+
+# 2.  **Data Visualization :**
+We create plots and figures to understand the data's content and structure. Seeing the images helps us gain intuition about the features the model will learn.
+
+<img width="697" height="653" alt="image" src="https://github.com/user-attachments/assets/23b3de18-d4f3-4c67-bcd3-7e56cbdb5e24" />
+
+*  The following Python implementation utilizes `matplotlib` to extract and display sample images directly from the dataset. This step confirms that the data loading pipeline is correctly mapping images to their respective categorical labels.
+
+## Exploratory Data Analysis (EDA): Initial Visualization and Data Integrity Checks
+
+### 🖼️ Initial Sample Visualization
+Before proceeding to preprocessing, it is essential to perform a visual inspection of the raw data. 
+
+
+# 🔍 Advanced Data Breakdowns and Diagnostic Visualizations
+
+To ensure the development of a robust model, it is imperative to look beyond individual samples. Before proceeding to the **Preprocessing (Normalization)** phase, the following diagnostic "breakdowns" (kırılımlar) are rigorously analyzed to identify potential issues or underlying biases within the dataset.
+
+---
+
+## ⚖️ 1. Class Distribution Analysis (Label Balance)
+
+In this phase, we analyze the frequency and representation of each distinct class within the training set.
+
+
+<img width="924" height="644" alt="image" src="https://github.com/user-attachments/assets/9a12507b-bbcf-4f21-b758-682e14053769" />
+
+* **The Goal:** To ensure the dataset maintains a balanced distribution, ideally targeting approximately **6,000 images per class**.
+* **The Problem it Solves:** This analysis prevents the model from developing a majority-class bias. If one class (e.g., "Shirt") significantly outweighs another (e.g., "Ankle Boot"), the model will inherently favor the majority class in its predictions, leading to poor generalization.
+
+---
+
+## 📈 2. Pixel Intensity Distribution (Histogram Analysis)
+
+By plotting a comprehensive histogram of raw pixel values across multiple images, we examine the numerical range of the data.
+
+<img width="922" height="506" alt="image" src="https://github.com/user-attachments/assets/d29ec1bd-3522-43e5-a418-230b1bc42fba" />
+
+* **The Goal:** To confirm that pixel values occupy the full $[0, 255]$ range.
+* **The Problem it Solves:** This analysis highlights the absolute necessity of **Normalization**. If the distribution is found to be skewed or restricted to a narrow range, it indicates a requirement for specific contrast adjustments or confirms that the $x / 255.0$ transformation is the appropriate scaling method for the dataset.
+
+
+This section provides a detailed analysis of the numerical distribution of pixel values that compose the images within the dataset. By examining the histogram, we gain insights into the data's dynamic range and the necessity for feature scaling.
+
+---
+
+### Pixel Intensity and Dynamic Range
+
+* **Pixel Intensity Representation:** Each individual pixel within the dataset images is represented by an integer value ranging from $0$ (representing pure black) to $255$ (representing pure white).
+* **Dynamic Range Verification:** Our analysis confirms that the data occupies the comprehensive dynamic range of $[0, 255]$, ensuring that all levels of luminosity are represented across the dataset.
+
+---
+
+### Bimodal Distribution Characteristics
+
+The histogram reveals a distinct bimodal distribution, which is characteristic of the Fashion MNIST dataset structure:
+
+1.  **Significant Peak at 0:** The prominent column on the far left of the graph indicates that the background of the images is consistently pure black ($0$). This represents the majority of the spatial area in the $28 \times 28$ grid.
+2.  **Variance Spread (1-255):** The values distributed across the $1$ to $255$ range represent the actual subjects of the images—capturing the textures, shadows, and specific visual features of the apparel items.
+
+---
+
+### Requirement for Feature Scaling and Normalization
+
+A critical takeaway from the histogram diagnostics is the immediate need for **Normalization**:
+
+* **Statistical Observations:** With a calculated average pixel value of $76.17$ and raw values extending up to $255$, the dataset exhibits a wide numerical variance.
+* **Normalization Objective:** It is evident that the data must be scaled to a normalized range of $[0, 1]$.
+* **Optimization Efficiency:** High raw input values (approaching $255$) can significantly impede the convergence rate during **Gradient Descent**. 
+* **Diagnostic Tooling:** This histogram serves as a primary diagnostic tool to identify these requirements prior to the training of the neural network, ensuring a more stable and faster model optimization process.
+
+---
+
+
+## 🌫️ 3. Class-Averaged "Mean" Images
+
+We perform a mathematical calculation to determine the "average image" for each of the 10 categories.
+
+* **The Goal:** To visualize the "centroid" or the most typical, aggregate representation of a specific category, such as a "Dress" or "Sneaker."
+* **The Problem it Solves:** If the average images of two different classes (e.g., a "Shirt" and a "Coat") appear nearly identical, it signals high **Inter-class Similarity**. This diagnostic suggests that the model may struggle with differentiation, indicating a need for more sophisticated architectures like **Convolutional Neural Networks (CNNs)** rather than simple **Artificial Neural Networks (ANNs)**.
+
+![Visual Placeholder: A 2x5 grid of blurry 'mean' images representing the average shape of each category]
+
+---
+
+## 📉 4. Variance and Noise Detection
+
+By visualizing the standard deviation of pixels within a specific class, we identify spatial areas of high variability.
+
+* **The Goal:** To pinpoint which sectors of the $28 \times 28$ grid exhibit the most change (e.g., the shifting sleeves of a shirt versus the relatively static sole of a shoe).
+* **The Problem it Solves:** This method assists in identifying outliers or noisy data points that deviate significantly from the standard structural characteristics of the class.
+
+![Visual Placeholder: Heatmap indicating pixel-wise variance where brighter areas show higher structural diversity]
+
+---
+
+## 🎯 Conclusion of Exploratory Phase
+
+By performing these comprehensive breakdowns, the workflow transitions from simply **"seeing data"** to fundamentally **"understanding data."** This diagnostic rigor ensures that when we apply **Normalization** in the subsequent step, we do so with a profound understanding of the data's mathematical distribution, categorical balance, and structural complexity.
 
 
 
 
 
-
-# 2.  **Data Visualization :** We create plots (grafikler) and figures to understand the data's content and structure. Seeing the images helps us gain intuition about the features the model will learn.
-
-# 3.  **Normalization:** We scale the pixel values (piksel değerleri) to a range between 0 and 1. This step is crucial for **Optimization** (Eğitimi Optimize Etme) as it helps the neural network converge faster and more effectively.
+# 3.  **Normalization:** 
+We scale the pixel values (piksel değerleri) to a range between 0 and 1. This step is crucial for **Optimization** (Eğitimi Optimize Etme) as it helps the neural network converge faster and more effectively.
 
 # 4.  **Model Construction:** We build the architecture by connecting various layers:
     * **Flattening :** Converting 2D images into 1D vectors.
