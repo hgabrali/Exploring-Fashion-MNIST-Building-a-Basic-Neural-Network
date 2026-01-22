@@ -438,7 +438,6 @@ Bu grafik bize modelin **"Pantolon"** ve **"Bot"** gibi belirgin şekilleri çok
 
 ---
 
-`![Visual Placeholder: Annotated Confusion Matrix Heatmap highlighting the high-confusion clusters and high-accuracy diagonal]`
 
 
 # 📉 Post-Training Evaluation and Performance Assessment
