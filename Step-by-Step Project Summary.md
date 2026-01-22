@@ -225,9 +225,57 @@ We scale the pixel values (piksel değerleri) to a range between 0 and 1. This s
 
 # 4.  **Model Construction:**
 
+<img width="585" height="198" alt="image" src="https://github.com/user-attachments/assets/1ba67d89-9982-456b-a09a-d05990a11614" />
+
+
 We build the architecture by connecting various layers:
     * **Flattening :** Converting 2D images into 1D vectors.
     * **Activation Functions :** Using **ReLU** for hidden layers and **Softmax** for the output layer to handle multi-class classification.
+
+
+#### 🏗️ Model Architecture: Sequential Neural Network
+
+The model follows a **Sequential** design, representing a linear stack of layers where each layer possesses exactly one input tensor and one output tensor. This structure is ideal for a standard feed-forward architecture.
+
+---
+
+##### 🛰️ Layer-by-Layer Breakdown
+
+###### 1. 🟦 Layer 1: Flatten (`flatten_1`)
+* **Dimensionality Reduction:** This layer converts the 2-dimensional input ($28 \times 28$ pixels) into a 1-dimensional vector consisting of **784 units**.
+* **Zero Parameters:** No learning occurs at this stage. Its sole function is to reshape the data to ensure compatibility with the subsequent dense layers.
+
+
+
+---
+
+##### 2. 🧠 Layer 2: Dense (`dense_2`) - Hidden Layer
+* **Fully Connected (FC):** This is a dense layer where every input from the flattened layer is connected to all **128 neurons**.
+* **Feature Extraction:** This layer is responsible for identifying abstract patterns and relationships within the pixel data using its 128 nodes.
+* **Weight Calculation:** This layer accounts for the bulk of the model's complexity with **100,480 parameters** ($784 \times 128$ weights + $128$ biases).
+
+---
+
+###### 3. 🎯 Layer 3: Dense (`dense_3`) - Output Layer
+* **Classification Head:** This final layer contains **10 neurons**, each corresponding to one of the 10 fashion categories in the dataset (e.g., T-shirt, Trouser, Pullover).
+* **Output Shape `(None, 10)`:** The `None` value represents a dynamic **Batch Size**, allowing for flexible processing, while `10` represents the fixed class count.
+
+
+
+---
+
+#### 📊 Model Summary & Complexity
+
+| Metric | Technical Detail | Value |
+| :--- | :--- | :--- |
+| **Total Trainable Parameters** | Weights and biases updated during Training | **101,770** |
+| **Model Complexity** | Computational depth and capacity | **High (for ANN)** |
+| **Memory Footprint** | Resource usage for inference | **~397.54 KB** |
+
+#### 🛠️ Technical Importance
+The high parameter count relative to the input size allows the model to map complex non-linear relationships. Despite its learning capacity, the **Memory Footprint** remains exceptionally lightweight, making this model suitable for basic edge-device inference or rapid prototyping.
+
+---
 
     
 
