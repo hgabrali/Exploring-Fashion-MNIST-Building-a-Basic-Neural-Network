@@ -26,6 +26,47 @@ The dataset consists of **70,000 images** (60,000 for training and 10,000 for te
 
 1.  **Data Loading :** We fetch the ready-to-use dataset using the `tfds.load` function from the **TensorFlow Datasets** library. This allows us to easily access the raw image data and labels.
 
+### Data Initialization and Dataset Partitioning
+
+The following section provides a detailed breakdown of the output generated during the initial data handling phase of the project. This stage is critical for ensuring data integrity and optimizing the training workflow.
+
+---
+
+###  Data Retrieval and Storage
+The initial execution confirms that the **Fashion MNIST** dataset has been successfully retrieved and stored within a specific local directory: 
+`path: /root/tensorflow_datasets/...`.
+
+* **Persistence:** By storing the dataset locally, the system ensures that all **subsequent calls** will load the data instantaneously from the disk.
+* **Efficiency:** This eliminates the need for redundant downloads, significantly reducing latency and bandwidth consumption during iterative development cycles.
+
+---
+
+### Dataset Partitioning
+The output validates the automatic partitioning of the data as defined in the source code. Proper segmentation is vital for unbiased model evaluation.
+
+| Segment | Sample Count | Purpose |
+| :--- | :--- | :--- |
+| **Training Samples** | 60,000 | Used to optimize model weights and learn feature patterns. |
+| **Test Samples** | 10,000 | Reserved as a "hold-out" set to evaluate generalization on unseen data. |
+
+!
+
+---
+
+### Significance of this Phase
+This stage serves as the structural foundation of the entire machine learning pipeline. It establishes a rigorous **Supervised Learning** framework where:
+
+1.  **Feature-Label Pairing:** Every image is precisely mapped to its corresponding ground-truth label (e.g., an image of a boot is correctly associated with the integer label **'9'**).
+2.  **Pipeline Readiness:** Ensuring the data is correctly partitioned and accessible is a prerequisite before proceeding to **Normalization**, **Feature Engineering**, and **Model Architecture** definition.
+3.  **Experimental Integrity:** By separating the test set early, we ensure that the model evaluation remains objective and free from data leakage.
+
+!
+
+
+
+
+
+
 2.  **Data Visualization :** We create plots (grafikler) and figures to understand the data's content and structure. Seeing the images helps us gain intuition about the features the model will learn.
 
 3.  **Normalization:** We scale the pixel values (piksel değerleri) to a range between 0 and 1. This step is crucial for **Optimization** (Eğitimi Optimize Etme) as it helps the neural network converge faster and more effectively.
